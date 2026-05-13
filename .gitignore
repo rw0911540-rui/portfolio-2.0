@@ -4,3 +4,10 @@ node_modules/
 skills-lock.json
 *.backup
 .DS_Store
+*.otf
+*.ttf
+*.mp4
+*.jpg
+*.png
+*.xlsx
+*.docx
