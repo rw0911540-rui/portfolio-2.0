@@ -7,7 +7,7 @@
   <script>
     (function(){
       var t = localStorage.getItem("theme");
-      var d = t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+      var d = t === "dark";
       document.documentElement.setAttribute("data-theme", d ? "dark" : "light");
       document.documentElement.style.colorScheme = d ? "dark" : "light";
     })();
@@ -2726,7 +2726,6 @@ function renderKeywords() {
     (function initTheme() {
       const toggle = document.getElementById("themeToggle");
       const stored = localStorage.getItem("theme");
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
       function setTheme(dark) {
         document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
         document.documentElement.style.colorScheme = dark ? "dark" : "light";
@@ -2734,7 +2733,7 @@ function renderKeywords() {
         toggle.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
         localStorage.setItem("theme", dark ? "dark" : "light");
       }
-      setTheme(stored ? stored === "dark" : prefersDark);
+      setTheme(stored === "dark");
       toggle.addEventListener("click", () => {
         setTheme(document.documentElement.getAttribute("data-theme") !== "dark");
       });
