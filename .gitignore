@@ -1,0 +1,13 @@
+.agents/
+node_modules/
+.next/
+skills-lock.json
+*.backup
+.DS_Store
+*.otf
+*.ttf
+*.mp4
+*.jpg
+*.png
+*.xlsx
+*.docx
