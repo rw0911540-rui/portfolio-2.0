@@ -2,23 +2,25 @@
 
 > Status: Todo → Doing → Review → Done
 
-| # | Task | Status | Difficulty | Source | Codex Prompt |
-|---|------|--------|------------|--------|-------------|
-| 1 | Lenis Smooth Scroll | Todo | Easy | Pitch Black Swiss | Replace CSS translateY transition with Lenis |
-| 2 | Card Reveals | Todo | Medium | Awesome GSAP | Staggered card reveal on scroll in Gallery |
-| 3 | Nav Menu Animation | Todo | Medium | Jamarea | Hover indicator sliding on topbar links |
-| 4 | Button Hover Effect | Todo | Medium | Significo | Elastic scale on chip/CTA hover |
-| 5 | Note Bar Interaction | Todo | Medium | Eduard Bodak | Dynamic metric bars on Data page |
-| 6 | Backers Word Cloud | Todo | Medium | Zentry | 13 tool names scrolling showcase |
-| 7 | Process Steps Scroll | Todo | Medium | Pitch Black Swiss | 7-step linked scroll flow on Data page |
-| 8 | Scroll Video Play | Todo | Hard | Zentry | Video play/pause on scroll position |
-| 9 | Mouse 3D Card Tilt | Todo | Hard | Eduard/INK | Folder cards tilt with mouse position |
-| 10 | Magnetic Buttons | Todo | Easy | Pitch Black Swiss | CTA buttons attract cursor |
+| # | Task | Status | Difficulty | Source | Notes |
+|---|------|--------|------------|--------|-------|
+| 1 | Lenis Smooth Scroll | Done | Easy | Pitch Black Swiss | Lenis CDN + PageController integration |
+| 2 | Card Reveals | Done | Medium | Awesome GSAP | Gallery cards stagger reveal via MutationObserver |
+| 3 | Nav Menu Animation | Done | Medium | Jamarea | initNavIndicator with sliding pill |
+| 4 | Button Hover Effect | Done | Medium | Significo | Enhanced spring-scale + glow on chips/cards/metrics |
+| 5 | Note Bar Interaction | Done | Medium | Eduard Bodak | Animated metric bars with count-up numbers |
+| 6 | Backers Word Cloud | Done | Medium | Zentry | Varied keyword sizes/weights with gradient mask |
+| 7 | Process Steps Scroll | Done | Medium | Pitch Black Swiss | 7-step process flow with sequential highlighting |
+| 8 | Scroll Video Play | Done | Hard | Zentry | IntersectionObserver-based video playback |
+| 9 | Mouse 3D Card Tilt | Done | Hard | Eduard/INK | Enhanced tilt range + glow highlight tracking |
+| 10 | Magnetic Buttons | Done | Easy | Pitch Black Swiss | Expanded to chips/cards/links with spring physics |
 | 11 | iQIYI Data Integration | Done | Easy | — | CTR chart, before/after, workflow diagram |
-| 12 | Clip-Path Section Transition | Todo | Hard | Significo/Zentry | Circle clip-path reveal between sections |
-| 13 | Single Canvas Multi-Scene | Todo | Hard | INK Games | Shared WebGL context for Hero+Works |
+| 12 | Clip-Path Section Transition | Done | Hard | Significo/Zentry | Circle clip-path reveal between pages |
+| 13 | Single Canvas Multi-Scene | Done | Hard | INK Games | Three.js shared WebGL context (particles + ring) |
 
 ---
+
+**All 13 tasks complete — 2026-07-06**
 
 **Legend:**
 - Easy = Pure CSS or simple JS, ~30min
