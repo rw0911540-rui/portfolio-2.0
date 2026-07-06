@@ -6,7 +6,7 @@ skills-lock.json
 .DS_Store
 *.otf
 *.ttf
-# *.mp4 - now tracked via Git LFS
+*.mp4
 *.jpg
 *.png
 *.xlsx
