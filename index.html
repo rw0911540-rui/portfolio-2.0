@@ -3,9 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script type="importmap">
-    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
-  </script>
   <!-- Blocking theme script: prevents color flash on load -->
   <script>
     (function(){
@@ -122,12 +119,6 @@
       transform: scale(1.02);
       transition: background 0.5s var(--ease-out), opacity 0.7s var(--ease-out);
     }
-
-    .clip-overlay { position: fixed; inset: 0; z-index: 9998; pointer-events: none; background: var(--accent); clip-path: circle(0% at 50% 50%); opacity: 0; }
-    .clip-overlay.is-active { opacity: 0.94; clip-path: circle(140% at 50% 50%); transition: clip-path 0.65s var(--ease-soft), opacity 0.3s var(--ease-out); }
-    .clip-overlay.is-exit { opacity: 0; clip-path: circle(0% at 50% 50%); transition: clip-path 0.5s var(--ease-out), opacity 0.5s var(--ease-out); }
-
-    .webgl-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.5; }
     body.is-dragging .depth-field {
       opacity: 0.58;
       transform: scale(1.025);
@@ -314,7 +305,7 @@
         transform 0.42s var(--ease-soft),
         width 0.42s var(--ease-soft),
         height 0.42s var(--ease-soft),
-	function renderKeywords() {
+        opacity 0.24s var(--ease-out),
         background 0.32s var(--ease-out);
       will-change: transform, width, height;
     }
@@ -605,16 +596,15 @@
         box-shadow 0.34s var(--ease-soft);
     }
     .chip:hover {
-      transform: translateY(-4px) scale(1.05);
+      transform: translateY(-2px) scale(1.018);
       color: var(--accent);
       border-color: var(--accent-glow);
-      background: oklch(1 0 0 / 0.88);
-      box-shadow: var(--shadow-md), 0 0 24px var(--accent-glow);
-      transition: transform 0.32s var(--ease-spring), color 0.22s var(--ease-out), border-color 0.22s var(--ease-out), background 0.34s var(--ease-soft), box-shadow 0.34s var(--ease-soft);
+      background: oklch(1 0 0 / 0.78);
+      box-shadow: var(--shadow-md);
     }
     .chip:active {
-      transform: translateY(-1px) scale(0.97);
-      transition-duration: 0.12s;
+      transform: translateY(0) scale(0.99);
+      transition-duration: 0.18s;
     }
 
     .hero-page .page-content {
@@ -652,13 +642,6 @@
       box-shadow: var(--shadow-sm);
       padding: 24px 22px;
       backdrop-filter: blur(12px) saturate(118%);
-      transition: transform 0.4s var(--ease-spring), box-shadow 0.4s var(--ease-spring), border-color 0.3s var(--ease-out);
-      cursor: default;
-    }
-    .stat-card:hover {
-      transform: translateY(-6px) scale(1.03);
-      box-shadow: var(--shadow-lg), 0 0 32px var(--accent-glow);
-      border-color: var(--accent-glow);
     }
     .stat-card strong {
       display: block;
@@ -666,9 +649,7 @@
       font-size: 38px;
       line-height: 1;
       letter-spacing: -0.04em;
-      transition: color 0.3s var(--ease-out);
     }
-    .stat-card:hover strong { color: var(--accent); }
     .stat-card span {
       display: block;
       margin-top: 8px;
@@ -755,13 +736,6 @@
       box-shadow: var(--shadow-sm);
       padding: 22px;
       backdrop-filter: blur(18px) saturate(140%);
-      transition: transform 0.38s var(--ease-spring), box-shadow 0.38s var(--ease-spring), border-color 0.3s var(--ease-out);
-      cursor: default;
-    }
-    .mini-card:hover {
-      transform: translateY(-5px) scale(1.025);
-      box-shadow: var(--shadow-md), 0 0 22px var(--accent-subtle);
-      border-color: var(--accent-glow);
     }
     .mini-card small {
       color: var(--text-tertiary);
@@ -989,15 +963,7 @@
     .timeline-entry {
       position: relative;
       border-radius: var(--radius-md);
-      padding: 12px 16px;
-      margin: 0 -16px;
-      transition: transform 0.35s var(--ease-spring), background 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
-      cursor: default;
-    }
-    .timeline-entry:hover {
-      transform: translateX(6px);
-      background: var(--glass-bg);
-      box-shadow: var(--shadow-sm);
+      padding: 4px 0;
     }
     .timeline-entry::before {
       content: "";
@@ -1031,11 +997,6 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 20px;
     }
-    .metric-bar { margin-top: 14px; height: 6px; border-radius: var(--radius-full); background: var(--line); overflow: hidden; }
-    .metric-bar-fill { height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--accent), var(--accent-2)); width: 0%; transition: width 1.2s var(--ease-soft); }
-    .page.is-active .metric-bar-fill { width: var(--bar-width, 0%); }
-    .metric-card strong.count-up { display: inline-block; }
-
     .metric-card {
       border: 1px solid oklch(0.88 0.012 250 / 0.46);
       border-radius: var(--radius-lg);
@@ -1044,18 +1005,15 @@
       box-shadow: var(--shadow-sm);
       padding: 28px;
       backdrop-filter: blur(10px) saturate(118%);
-      cursor: default;
       transition:
-        transform 0.38s var(--ease-spring),
-        box-shadow 0.38s var(--ease-spring),
-        border-color 0.3s var(--ease-out);
+        transform 0.34s var(--ease-out),
+        box-shadow 0.34s var(--ease-out),
+        border-color 0.34s var(--ease-out);
     }
     .metric-card:hover {
-      transform: translateY(-6px) scale(1.03);
-      box-shadow: var(--shadow-lg), 0 0 28px var(--accent-glow);
-      border-color: var(--accent-glow);
-    }
-    .metric-card:hover strong { color: var(--accent); }
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: oklch(0.72 0.08 252 / 0.28);
     }
     .metric-card strong {
       display: block;
@@ -1108,11 +1066,10 @@
     }
     .contact-link:hover,
     .contact-link:focus-visible {
-      transform: translateY(-4px) scale(1.02);
-      background: oklch(1 0 0 / 0.78);
-      box-shadow: var(--shadow-md), 0 0 22px var(--accent-subtle);
+      transform: translateY(-3px);
+      background: oklch(1 0 0 / 0.72);
+      box-shadow: var(--shadow-md);
       border-color: var(--accent-glow);
-      transition: transform 0.32s var(--ease-spring), box-shadow 0.32s var(--ease-spring), background 0.28s var(--ease-out), border-color 0.28s var(--ease-out);
     }
     .contact-link:active {
       transform: translateY(-1px) scale(0.992);
@@ -1384,16 +1341,12 @@
     .gallery-card--wide { aspect-ratio: 16/9; width: auto; }
     .gallery-card--square { aspect-ratio: 1/1; height: 54vh; max-height: 480px; }
     .gallery-card--16x9 { aspect-ratio: 16/9; height: 54vh; max-height: 480px; }
-
-    .gallery-card, .gallery-stack { opacity: 0; transform: translateY(30px); transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out); transition-delay: var(--reveal-delay, 0s); }
-    .gallery-page.is-active .gallery-card,
-    .gallery-page.is-active .gallery-stack { opacity: 1; transform: translateY(0); }
     .gallery-card video, .gallery-card img { width: 100%; height: 100%; object-fit: cover; transform: translateZ(0); backface-visibility: hidden; }
     .gallery-page:not(.is-active) .gallery-card video { visibility: hidden; }
     .gallery-stack { display: flex; flex-direction: column; gap: 1.2rem; height: 56vh; max-height: 520px; }
     .gallery-stack .gallery-card { height: calc((56vh - 1.2rem) / 2); max-height: calc((520px - 1.2rem) / 2); aspect-ratio: 16/9; flex-shrink: 0; }
     .gallery-label { position: absolute; bottom: 14px; left: 14px; z-index: 2; background: oklch(0 0 0 / 0.42); backdrop-filter: blur(14px) saturate(140%); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 12px; border-radius: var(--radius-full); pointer-events: none; }
-    .keywords-bar { position: absolute; bottom: 48px; left: 0; width: 100%; overflow: hidden; padding: 14px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: oklch(1 0 0 / 0.36); backdrop-filter: blur(18px); z-index: 3; mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%); -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%); }
+    .keywords-bar { position: absolute; bottom: 48px; left: 0; width: 100%; overflow: hidden; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: oklch(1 0 0 / 0.36); backdrop-filter: blur(18px); z-index: 3; }
     .keywords-track {
       display: flex;
       gap: 2.6rem;
@@ -1405,10 +1358,8 @@
     }
     .keywords-bar:hover .keywords-track { animation-play-state: paused; }
     @keyframes keyword-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    .keyword-chip { flex-shrink: 0; display: inline-flex; align-items: center; gap: 8px; color: var(--text-secondary); font-size: 13px; font-weight: 650; white-space: nowrap; padding: 5px 14px; border-radius: var(--radius-full); transition: transform 0.28s var(--ease-spring), background 0.24s var(--ease-out), color 0.24s var(--ease-out); cursor: default; }
-    .keyword-chip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; transition: background 0.24s var(--ease-out); }
-    .keyword-chip:hover { transform: scale(1.15); background: var(--accent); color: #fff; }
-    .keyword-chip:hover::before { background: #fff; }
+    .keyword-chip { flex-shrink: 0; display: inline-flex; align-items: center; gap: 8px; color: var(--text-secondary); font-size: 13px; font-weight: 650; white-space: nowrap; }
+    .keyword-chip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
 
     .stat-card,
     .identity-card,
@@ -1747,8 +1698,6 @@
         gap: 18px;
         padding-top: 126px;
       }
-    .folder-card::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 50%), var(--accent-glow), transparent 60%); opacity: 0; transition: opacity 0.4s var(--ease-out); pointer-events: none; z-index: 2; }
-    .folder-card.is-tilting::after { opacity: 0.6; }
       .folder-card {
         position: relative;
         left: auto;
@@ -1808,8 +1757,6 @@
     </div>
   </div>
   <div class="depth-field" aria-hidden="true"></div>
-  <canvas class="webgl-canvas" aria-hidden="true"></canvas>
-  <div class="clip-overlay" aria-hidden="true"></div>
   <div class="cursor" aria-hidden="true"></div>
   <div class="cursor-ring" aria-hidden="true"></div>
 
@@ -1956,48 +1903,11 @@
               <article class="timeline-entry"><time>2025.09 - 2026.05</time><h3 data-i18n="timelineThreeTitle">网易传媒科技</h3><p data-i18n="timelineThreeBody">拍摄剪辑实习，参与网易浪潮工作室自媒体矩阵制作。</p></article>
             </div>
           </div>
-          <div class="process-steps animate-in" style="--i:3;display:flex;align-items:flex-start;justify-content:space-between;gap:0;margin-bottom:20px;padding:16px 0;border:1px solid var(--line);border-radius:var(--radius-lg);background:var(--glass-bg);overflow-x:auto;">
-            <div class="process-step" style="flex:1;min-width:90px;text-align:center;padding:8px;position:relative;">
-              <div class="ps-circle" style="width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;margin:0 auto 6px;font-size:11px;font-weight:800;">01</div>
-              <span style="font-size:11px;font-weight:600;color:var(--text-secondary);" data-i18n="psIdeate">Ideate</span>
-            </div>
-            <div class="ps-connector" style="flex:0 0 24px;height:2px;background:var(--line);margin-top:14px;"></div>
-            <div class="process-step" style="flex:1;min-width:90px;text-align:center;padding:8px;">
-              <div class="ps-circle" style="width:28px;height:28px;border-radius:50%;background:var(--line);color:var(--text-tertiary);display:grid;place-items:center;margin:0 auto 6px;font-size:11px;font-weight:800;">02</div>
-              <span style="font-size:11px;font-weight:600;color:var(--text-tertiary);" data-i18n="psShoot">Shoot</span>
-            </div>
-            <div class="ps-connector" style="flex:0 0 24px;height:2px;background:var(--line);margin-top:14px;"></div>
-            <div class="process-step" style="flex:1;min-width:90px;text-align:center;padding:8px;">
-              <div class="ps-circle" style="width:28px;height:28px;border-radius:50%;background:var(--line);color:var(--text-tertiary);display:grid;place-items:center;margin:0 auto 6px;font-size:11px;font-weight:800;">03</div>
-              <span style="font-size:11px;font-weight:600;color:var(--text-tertiary);" data-i18n="psEdit">Edit</span>
-            </div>
-            <div class="ps-connector" style="flex:0 0 24px;height:2px;background:var(--line);margin-top:14px;"></div>
-            <div class="process-step" style="flex:1;min-width:90px;text-align:center;padding:8px;">
-              <div class="ps-circle" style="width:28px;height:28px;border-radius:50%;background:var(--line);color:var(--text-tertiary);display:grid;place-items:center;margin:0 auto 6px;font-size:11px;font-weight:800;">04</div>
-              <span style="font-size:11px;font-weight:600;color:var(--text-tertiary);" data-i18n="psColor">Color</span>
-            </div>
-            <div class="ps-connector" style="flex:0 0 24px;height:2px;background:var(--line);margin-top:14px;"></div>
-            <div class="process-step" style="flex:1;min-width:90px;text-align:center;padding:8px;">
-              <div class="ps-circle" style="width:28px;height:28px;border-radius:50%;background:var(--line);color:var(--text-tertiary);display:grid;place-items:center;margin:0 auto 6px;font-size:11px;font-weight:800;">05</div>
-              <span style="font-size:11px;font-weight:600;color:var(--text-tertiary);" data-i18n="psPublish">Publish</span>
-            </div>
-            <div class="ps-connector" style="flex:0 0 24px;height:2px;background:var(--line);margin-top:14px;"></div>
-            <div class="process-step" style="flex:1;min-width:90px;text-align:center;padding:8px;">
-              <div class="ps-circle" style="width:28px;height:28px;border-radius:50%;background:var(--line);color:var(--text-tertiary);display:grid;place-items:center;margin:0 auto 6px;font-size:11px;font-weight:800;">06</div>
-              <span style="font-size:11px;font-weight:600;color:var(--text-tertiary);" data-i18n="psReview">Review</span>
-            </div>
-            <div class="ps-connector" style="flex:0 0 24px;height:2px;background:var(--line);margin-top:14px;"></div>
-            <div class="process-step" style="flex:1;min-width:90px;text-align:center;padding:8px;">
-              <div class="ps-circle" style="width:28px;height:28px;border-radius:50%;background:var(--line);color:var(--text-tertiary);display:grid;place-items:center;margin:0 auto 6px;font-size:11px;font-weight:800;">07</div>
-              <span style="font-size:11px;font-weight:600;color:var(--text-tertiary);" data-i18n="psIterate">Iterate</span>
-            </div>
-          </div>
-          
           <div class="metric-grid animate-in" style="--i:3">
-            undefined<span data-i18n="metricOne">《流媒体产出》全网播放</span><div class="metric-bar"><div class="metric-bar-fill"></div></div></div>
-            <div class="metric-card"><strong>35w+</strong><span data-i18n="metricTwo">B站单条播放</span><div class="metric-bar"><div class="metric-bar-fill"></div></div></div>
-            <div class="metric-card"><strong>3000+</strong><span data-i18n="metricThree">账号冷启动涨粉</span><div class="metric-bar"><div class="metric-bar-fill"></div></div></div>
-            <div class="metric-card"><strong>15s</strong><span data-i18n="metricFour">平均停留时长</span><div class="metric-bar"><div class="metric-bar-fill"></div></div></div>
+            <div class="metric-card"><strong>200w+</strong><span data-i18n="metricOne">《流媒体产出》全网播放</span></div>
+            <div class="metric-card"><strong>35w+</strong><span data-i18n="metricTwo">B站单条播放</span></div>
+            <div class="metric-card"><strong>3000+</strong><span data-i18n="metricThree">账号冷启动涨粉</span></div>
+            <div class="metric-card"><strong>15s</strong><span data-i18n="metricFour">平均停留时长</span></div>
           </div>
         </div>
       </section>
@@ -2273,12 +2183,14 @@
         this.currentPage = 0;
         this.totalPages = 6;
         this.isTransitioning = false;
+        this.wheelAccumulator = 0;
+        this.wheelRaf = null;
+        this.touchStartY = 0;
         this.dots = document.getElementById("pageDots");
         this.numbers = document.getElementById("pageNumbers");
         this.pages = [...document.querySelectorAll(".page")];
         this.galleryTrack = document.querySelector(".gallery-track");
         this.buildIndicators();
-        this.initLenis();
         this.bind();
         this.goTo(0, true);
       }
@@ -2287,84 +2199,56 @@
         this.dots.innerHTML = labels.map((label, i) => `<button class="page-dot" type="button" data-go="${i}" aria-label="Page ${i + 1}: ${label}"></button>`).join("");
         this.numbers.innerHTML = labels.map((label, i) => `<button class="page-num" type="button" data-go="${i}" aria-label="Go to page ${i + 1}: ${label}">${String(i + 1).padStart(2, "0")}</button>`).join("");
       }
-      initLenis() {
-        if (typeof Lenis === 'undefined') { this.lenis = null; return; }
-        this.lenis = new Lenis({
-          duration: 1.2,
-          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          smoothWheel: true,
-          smoothTouch: true,
-          touchMultiplier: 1.5,
-        });
-        const self = this;
-        this.lenis.on('scroll', ({ scroll }) => {
-          const pageFloat = scroll / window.innerHeight;
-          const nearestPage = Math.round(pageFloat);
-          if (nearestPage !== self.currentPage && nearestPage >= 0 && nearestPage < self.totalPages) {
-            self._updateUI(nearestPage);
-          }
-        });
-        const raf = (time) => { self.lenis.raf(time); requestAnimationFrame(raf); };
-        requestAnimationFrame(raf);
-      }
-      _updateUI(pageIndex) {
-        this.currentPage = pageIndex;
-        document.documentElement.style.setProperty("--current-page", pageIndex);
-        this.pages.forEach((p, i) => p.classList.toggle("is-active", i === pageIndex));
-        this.dots.querySelectorAll(".page-dot").forEach((d, i) => d.classList.toggle("is-active", i === pageIndex));
-        this.numbers.querySelectorAll(".page-num").forEach((n, i) => n.classList.toggle("is-current", i === pageIndex));
-        document.querySelectorAll(".nav-links button").forEach((b) => b.classList.toggle("is-active", Number(b.dataset.go) === pageIndex));
-        if (this.galleryTrack) { this.galleryTrack.style.animationPlayState = pageIndex === 1 ? "running" : "paused"; }
-        updateGalleryPlayback();
-      }
       bind() {
-        const self = this;
         window.addEventListener("wheel", (event) => {
-          if (event.ctrlKey || self.isTransitioning) return;
+          if (event.ctrlKey || this.isTransitioning) return;
           event.preventDefault();
-          if (self.lenis) {
-            // Lenis handles smooth scrolling naturally via wheel events
-            self.isTransitioning = true;
-            clearTimeout(self._transitionTimer);
-            self._transitionTimer = setTimeout(() => { self.isTransitioning = false; }, 800);
-          } else {
-            // Fallback to CSS transform
-            const direction = event.deltaY > 0 ? 1 : -1;
-            self.goTo(self.currentPage + direction);
+          this.wheelAccumulator += event.deltaY;
+          if (!this.wheelRaf) {
+            this.wheelRaf = requestAnimationFrame(() => {
+              if (Math.abs(this.wheelAccumulator) >= 60) {
+                const direction = this.wheelAccumulator > 0 ? 1 : -1;
+                this.wheelAccumulator = 0;
+                this.goTo(this.currentPage + direction);
+              }
+              this.wheelRaf = null;
+            });
           }
         }, { passive: false });
         window.addEventListener("keydown", (event) => {
           if (event.target.matches("input, textarea")) return;
-          if (["ArrowDown", "ArrowRight", "PageDown", " "].includes(event.key)) { event.preventDefault(); self.goTo(self.currentPage + 1); }
-          if (["ArrowUp", "ArrowLeft", "PageUp"].includes(event.key)) { event.preventDefault(); self.goTo(self.currentPage - 1); }
-          if (event.key === "Home") self.goTo(0);
-          if (event.key === "End") self.goTo(self.totalPages - 1);
+          if (["ArrowDown", "ArrowRight", "PageDown", " "].includes(event.key)) { event.preventDefault(); this.goTo(this.currentPage + 1); }
+          if (["ArrowUp", "ArrowLeft", "PageUp"].includes(event.key)) { event.preventDefault(); this.goTo(this.currentPage - 1); }
+          if (event.key === "Home") this.goTo(0);
+          if (event.key === "End") this.goTo(this.totalPages - 1);
         });
-        window.addEventListener("touchstart", (event) => { if (!self.isTransitioning && !self.lenis) self.touchStartY = event.changedTouches[0].clientY; }, { passive: true });
+        window.addEventListener("touchstart", (event) => { if (!this.isTransitioning) this.touchStartY = event.changedTouches[0].clientY; }, { passive: true });
         window.addEventListener("touchend", (event) => {
-          if (self.lenis) return;
-          const delta = self.touchStartY - event.changedTouches[0].clientY;
-          if (Math.abs(delta) > 50) self.goTo(self.currentPage + (delta > 0 ? 1 : -1));
+          const delta = this.touchStartY - event.changedTouches[0].clientY;
+          if (Math.abs(delta) > 50) this.goTo(this.currentPage + (delta > 0 ? 1 : -1));
         }, { passive: true });
         document.addEventListener("click", (event) => {
           const target = event.target.closest("[data-go]");
-          if (target) { event.preventDefault(); self.goTo(Number(target.dataset.go)); }
+          if (target) {
+            event.preventDefault();
+            this.goTo(Number(target.dataset.go));
+          }
         });
       }
       goTo(index, instant = false) {
         const next = Math.max(0, Math.min(this.totalPages - 1, index));
         if (next === this.currentPage && !instant) return;
-        if (this.isTransitioning && !instant) return;
-        this._updateUI(next);
-        if (this.lenis) {
-          this.isTransitioning = !instant;
-          this.lenis.scrollTo(next * window.innerHeight, {
-            duration: instant ? 0 : 1.0,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          });
-        }
+        this.currentPage = next;
+        this.isTransitioning = !instant;
+        document.documentElement.style.setProperty("--current-page", next);
+        this.pages.forEach((page, i) => page.classList.toggle("is-active", i === next));
+        this.dots.querySelectorAll(".page-dot").forEach((dot, i) => dot.classList.toggle("is-active", i === next));
+        this.numbers.querySelectorAll(".page-num").forEach((num, i) => num.classList.toggle("is-current", i === next));
+        document.querySelectorAll(".nav-links button").forEach((btn) => btn.classList.toggle("is-active", Number(btn.dataset.go) === next));
+        if (this.galleryTrack) { this.galleryTrack.style.animationPlayState = next === 1 ? "running" : "paused"; }
+        updateGalleryPlayback();
         clearTimeout(this._transitionTimer);
-        this._transitionTimer = setTimeout(() => { this.isTransitioning = false; }, instant ? 0 : 1100);
+        this._transitionTimer = setTimeout(() => { this.isTransitioning = false; }, instant ? 0 : 740);
       }
     }
 
@@ -2395,20 +2279,15 @@ function renderKeywords() {
       const keywords = currentLang === "zh"
         ? ["新媒体运营", "短视频编导", "AIGC 工作流", "DSLR 拍摄", "达芬奇调色", "封面设计", "网感文案", "数据复盘", "选题策划", "多平台分发", "Premiere Pro", "Photoshop", "DaVinci Resolve", "AI 视频生成", "AI 海报设计"]
         : ["New Media Ops", "Short Video", "AIGC Workflow", "DSLR Shooting", "DaVinci Color", "Thumbnail Design", "Copywriting", "Data Review", "Topic Planning", "Multi-Platform", "Premiere Pro", "Photoshop", "DaVinci Resolve", "AI Video Gen", "AI Poster Design"];
-      const sizes = [18, 14, 20, 13, 15, 12, 16, 11, 14, 13, 17, 12, 15, 14, 13];
-      const weights = [800, 600, 700, 500, 650, 450, 700, 500, 600, 450, 700, 500, 650, 600, 500];
-      const opacities = [1, 0.7, 0.9, 0.6, 0.75, 0.5, 0.85, 0.55, 0.7, 0.5, 0.8, 0.6, 0.75, 0.7, 0.55];
-      const items = keywords.map((kw, i) => ({ kw, size: sizes[i], weight: weights[i], opacity: opacities[i] }));
-      const doubled = [...items, ...items];
-      track.innerHTML = doubled.map(({ kw, size, weight, opacity }) =>
-        `<span class="keyword-chip" style="font-size:${size}px;font-weight:${weight};opacity:${opacity};">${kw}</span>`
-      ).join("");
+      const doubled = [...keywords, ...keywords];
+      track.innerHTML = doubled.map((kw) => `<span class="keyword-chip">${kw}</span>`).join("");
     }
 
     function renderSkills() {
       const wrap = document.getElementById("skillPills");
       wrap.innerHTML = skills[currentLang].map((skill) => `<span class="chip">${skill}</span>`).join("");
     }
+
     function renderFolders() {
       const stage = document.getElementById("folderStage");
       stage.innerHTML = folders.map((folder, i) => `
@@ -2547,12 +2426,10 @@ function renderKeywords() {
         const localX = (event.clientX - rect.left) / rect.width - 0.5;
         const localY = (event.clientY - rect.top) / rect.height - 0.5;
         const state = stateFor(card);
-        state.tx = Math.max(-8, Math.min(8, localY * -14));
-        state.ty = Math.max(-8, Math.min(8, localX * 14));
+        state.tx = Math.max(-6, Math.min(6, localY * -10));
+        state.ty = Math.max(-6, Math.min(6, localX * 10));
         state.active = true;
         card.classList.add("is-tilting");
-        card.style.setProperty("--glow-x", `${((e.clientX - rect.left) / rect.width) * 100}%`);
-        card.style.setProperty("--glow-y", `${((e.clientY - rect.top) / rect.height) * 100}%`);
         requestTiltFrame(card, state);
       };
       const releaseTilt = (card) => {
@@ -2601,35 +2478,7 @@ function renderKeywords() {
       motionQuery.addEventListener?.("change", resetAll);
     }
 
-    
-
-    let _clipPage = 0;
-    function clipPathTransition(cb) {
-      const overlay = document.querySelector(".clip-overlay");
-      if (!overlay || window.matchMedia("(prefers-reduced-motion: reduce)").matches) { if (cb) cb(); return; }
-      overlay.classList.remove("is-exit");
-      void overlay.offsetWidth;
-      overlay.classList.add("is-active");
-      const done = () => { overlay.removeEventListener("transitionend", done); if (cb) cb(); setTimeout(() => { overlay.classList.remove("is-active"); overlay.classList.add("is-exit"); }, 200); };
-      overlay.addEventListener("transitionend", done, { once: true });
-    }
-    function initClipTransition() {
-      const pages = document.querySelectorAll(".page");
-      const observer = new MutationObserver(() => {
-        pages.forEach((page, i) => {
-          if (page.classList.contains("is-active") && _clipPage !== i) {
-            const prev = _clipPage;
-            _clipPage = i;
-            if (prev >= 0 && Math.abs(i - prev) === 1) {
-              clipPathTransition();
-            }
-          }
-        });
-      });
-      pages.forEach(p => observer.observe(p, { attributes: true, attributeFilter: ["class"] }));
-    }
-
-function initCursor() {
+    function initCursor() {
       const cursor = document.querySelector(".cursor");
       const ring = document.querySelector(".cursor-ring");
       if (window.matchMedia("(max-width: 980px)").matches || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -2730,26 +2579,7 @@ function initCursor() {
       updateGalleryPlayback();
     }
 
-    
-
-    function initGalleryReveals() {
-      const galleryPage = document.querySelector(".gallery-page");
-      const cards = document.querySelectorAll(".gallery-card, .gallery-stack");
-      if (!galleryPage || !cards.length) return;
-      const observer = new MutationObserver(() => {
-        if (!galleryPage.classList.contains("is-active")) return;
-        cards.forEach((card, i) => {
-          card.style.setProperty("--reveal-delay", `${i * 0.08}s`);
-          card.classList.add("gallery-reveal");
-        });
-        setTimeout(() => {
-          cards.forEach(card => card.classList.remove("gallery-reveal"));
-        }, 2000);
-      });
-      observer.observe(galleryPage, { attributes: true, attributeFilter: ["class"] });
-    }
-
-function initGalleryLabels() {
+    function initGalleryLabels() {
       const labelMap = {
         "宣传片片段1": "宣传片",
         "兰开夏宣传片1": "兰开夏",
@@ -2792,166 +2622,7 @@ function initGalleryLabels() {
       }
     }
 
-
-    function initMetricBars() {
-      const metricCards = document.querySelectorAll(".metric-card .count-up");
-      if (!metricCards.length) return;
-      const observer = new MutationObserver(() => {
-        const evidencePage = document.querySelector(".evidence-page");
-        if (!evidencePage || !evidencePage.classList.contains("is-active")) return;
-        metricCards.forEach(el => {
-          if (el.dataset.animated === "true") return;
-          el.dataset.animated = "true";
-          const target = parseInt(el.dataset.target) || 0;
-          const suffix = el.textContent.replace(/[0-9]/g, '').replace('w+','w+').trim();
-          const duration = 1800;
-          const start = performance.now();
-          const initialText = el.textContent;
-          function tick(now) {
-            const elapsed = now - start;
-            const progress = Math.min(elapsed / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            const current = Math.round(target * eased);
-            el.textContent = current + (suffix || '');
-            if (progress < 1) requestAnimationFrame(tick);
-            else el.textContent = initialText;
-          }
-          requestAnimationFrame(tick);
-        });
-      });
-      observer.observe(document.querySelector(".evidence-page") || document.body, { attributes: true, attributeFilter: ["class"], subtree: true });
-    }
-
-
-    
-
-    function initProcessSteps() {
-      const steps = document.querySelectorAll(".process-step .ps-circle");
-      const connectors = document.querySelectorAll(".ps-connector");
-      if (!steps.length) return;
-      const evidencePage = document.querySelector(".evidence-page");
-      let animated = false;
-      const observer = new MutationObserver(() => {
-        if (!evidencePage.classList.contains("is-active") || animated) return;
-        animated = true;
-        steps.forEach((step, i) => {
-          setTimeout(() => {
-            step.style.background = "var(--accent)";
-            step.style.color = "#fff";
-            step.style.transition = "background 0.4s var(--ease-out), color 0.4s var(--ease-out)";
-            if (connectors[i]) {
-              connectors[i].style.background = "var(--accent)";
-              connectors[i].style.transition = "background 0.4s var(--ease-out)";
-            }
-          }, i * 200);
-        });
-      });
-      observer.observe(evidencePage, { attributes: true, attributeFilter: ["class"] });
-    }
-
-
-
-    function initSharedWebGL() {
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-      if (window.matchMedia("(max-width: 980px)").matches) return;
-      const canvas = document.querySelector(".webgl-canvas");
-      if (!canvas) return;
-
-      import("three").then((THREE) => {
-        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        renderer.setSize(window.innerWidth, window.innerHeight);
-
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
-        camera.position.z = 30;
-
-        // Shared particle system
-        const particleCount = 200;
-        const positions = new Float32Array(particleCount * 3);
-        const colors = new Float32Array(particleCount * 3);
-        const sizes = new Float32Array(particleCount);
-        for (let i = 0; i < particleCount; i++) {
-          positions[i * 3] = (Math.random() - 0.5) * 60;
-          positions[i * 3 + 1] = (Math.random() - 0.5) * 40;
-          positions[i * 3 + 2] = (Math.random() - 0.5) * 20;
-          colors[i * 3] = 0.35 + Math.random() * 0.3;
-          colors[i * 3 + 1] = 0.5 + Math.random() * 0.35;
-          colors[i * 3 + 2] = 0.7 + Math.random() * 0.3;
-          sizes[i] = Math.random() * 3 + 1;
-        }
-        const geo = new THREE.BufferGeometry();
-        geo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-        geo.setAttribute("color", new THREE.BufferAttribute(colors, 3));
-        geo.setAttribute("size", new THREE.BufferAttribute(sizes, 1));
-
-        const mat = new THREE.PointsMaterial({
-          size: 0.25,
-          vertexColors: true,
-          blending: THREE.AdditiveBlending,
-          depthWrite: false,
-          transparent: true,
-          opacity: 0.55,
-        });
-        const particles = new THREE.Points(geo, mat);
-        scene.add(particles);
-
-        // Shared ring geometry for Work page
-        const ringGeo = new THREE.TorusGeometry(8, 0.08, 16, 100);
-        const ringMat = new THREE.MeshBasicMaterial({ color: 0x3b82f6, transparent: true, opacity: 0.12, depthWrite: false });
-        const ring = new THREE.Mesh(ringGeo, ringMat);
-        ring.rotation.x = Math.PI * 0.5;
-        ring.visible = false;
-        scene.add(ring);
-
-        let mouseX = 0, mouseY = 0;
-        let targetMX = 0, targetMY = 0;
-        window.addEventListener("pointermove", (e) => {
-          targetMX = (e.clientX / window.innerWidth) * 2 - 1;
-          targetMY = -(e.clientY / window.innerHeight) * 2 + 1;
-        });
-
-        let currentScene = 0; // 0=hero, 1=gallery, 2=work
-
-        // Watch page changes
-        const pages = document.querySelectorAll(".page");
-        const pageObserver = new MutationObserver(() => {
-          pages.forEach((p, i) => {
-            if (p.classList.contains("is-active")) currentScene = i;
-          });
-          ring.visible = currentScene === 2;
-          mat.opacity = currentScene === 0 ? 0.55 : currentScene === 2 ? 0.35 : 0.2;
-        });
-        pages.forEach(p => pageObserver.observe(p, { attributes: true, attributeFilter: ["class"] }));
-
-        function animate() {
-          requestAnimationFrame(animate);
-          mouseX += (targetMX - mouseX) * 0.04;
-          mouseY += (targetMY - mouseY) * 0.04;
-
-          particles.rotation.y += 0.0008;
-          particles.rotation.x += 0.0003;
-          particles.rotation.x += mouseY * 0.002;
-          particles.rotation.y += mouseX * 0.003;
-
-          if (currentScene === 2) {
-            ring.rotation.z += 0.003;
-            ring.scale.setScalar(1 + Math.sin(Date.now() * 0.001) * 0.08);
-          }
-
-          renderer.render(scene, camera);
-        }
-        animate();
-
-        window.addEventListener("resize", () => {
-          renderer.setSize(window.innerWidth, window.innerHeight);
-          camera.aspect = window.innerWidth / window.innerHeight;
-          camera.updateProjectionMatrix();
-        });
-      }).catch(() => {});
-    }
-
-function initAmbient3D() {
+    function initAmbient3D() {
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
       let raf = null;
       let x = window.innerWidth / 2;
@@ -2990,22 +2661,19 @@ function initAmbient3D() {
     }
 
     function initMagneticButtons() {
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-      const magnetTargets = document.querySelectorAll(".primary-cta, .chip, .stat-card, .metric-card, .contact-link, .mini-card, .timeline-entry, .folder-card");
-      magnetTargets.forEach(el => {
-        el.addEventListener("pointermove", (e) => {
-          const rect = el.getBoundingClientRect();
+      const btns = document.querySelectorAll(".primary-cta");
+      if (!btns.length || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      btns.forEach(btn => {
+        btn.addEventListener("pointermove", (e) => {
+          const rect = btn.getBoundingClientRect();
           const x = (e.clientX - rect.left) / rect.width - 0.5;
           const y = (e.clientY - rect.top) / rect.height - 0.5;
-          const strength = el.matches(".primary-cta") ? 12 : el.matches(".folder-card") ? 6 : 8;
-          el.style.transform = `translate(${x * strength}px, ${y * strength}px) scale(1.04)`;
-          el.style.transition = "transform 0.16s var(--ease-out), box-shadow 0.16s var(--ease-out)";
-          el.style.boxShadow = "var(--shadow-md)";
+          btn.style.transform = `translate(${x * 10}px, ${y * 8}px) scale(1.05)`;
+          btn.style.transition = "transform 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out)";
         });
-        el.addEventListener("pointerleave", () => {
-          el.style.transform = "";
-          el.style.boxShadow = "";
-          el.style.transition = "transform 0.5s var(--ease-spring), box-shadow 0.4s var(--ease-spring)";
+        btn.addEventListener("pointerleave", () => {
+          btn.style.transform = "";
+          btn.style.transition = "transform 0.45s var(--ease-spring), box-shadow 0.35s var(--ease-spring)";
         });
       });
     }
@@ -3677,26 +3345,19 @@ function initAmbient3D() {
     }
 
     initAssistant();
-    initSharedWebGL();
     initAmbient3D();
-    initProcessSteps();
-    initMetricBars();
     initLoader();
     warmGalleryMedia();
-    initGalleryReveals();
     initGalleryLabels();
     initVideoPlaybackController();
     initFolderParallax();
     initNavIndicator();
     initCursor();
-    initClipTransition();
     initMagneticButtons();
     initFolderSpace();
     const controller = new PageController();
     applyLanguage("zh");
     window.portfolioPageController = controller;
   </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 </body>
 </html>
